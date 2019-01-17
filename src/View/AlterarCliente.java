@@ -11,6 +11,7 @@ public class AlterarCliente extends javax.swing.JFrame {
     public AlterarCliente() {
         initComponents();
         VisualizarTabela();
+        setTitle("Alterar Dados");
     }
     
     
@@ -40,6 +41,27 @@ public class AlterarCliente extends javax.swing.JFrame {
         txtCpf.setText("");
         txtTelefone.setText("");
     }
+    
+    
+    
+     public void BuscarPorNome(String nome) {
+        DefaultTableModel modelo = (DefaultTableModel) tblClientes.getModel();
+        modelo.setNumRows(0);
+        ClienteDAO pdao = new ClienteDAO();
+
+        //inserindo dados do BD para a tabela da interface gráfica
+        for (Cliente c : pdao.BuscarPorNome(nome)) {
+
+            modelo.addRow(new Object[]{
+                c.getId(),
+                c.getNome(),
+                c.getCpf(),
+                c.getTelefone()
+
+            });
+        }
+
+    }
 
     
     @SuppressWarnings("unchecked")
@@ -57,24 +79,43 @@ public class AlterarCliente extends javax.swing.JFrame {
         tblClientes = new javax.swing.JTable();
         txtID = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        btnBuscarNome = new javax.swing.JButton();
+        txtBuscarNome = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Nome");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(25, 25, 50, 17);
+        getContentPane().add(txtNome);
+        txtNome.setBounds(25, 53, 397, 30);
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("CPF");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(25, 84, 40, 17);
+        getContentPane().add(txtCpf);
+        txtCpf.setBounds(25, 107, 397, 30);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("Telefone");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(25, 138, 60, 17);
+        getContentPane().add(txtTelefone);
+        txtTelefone.setBounds(25, 161, 397, 30);
 
+        btnAlterar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-repeat-25.png"))); // NOI18N
         btnAlterar.setText("Alterar");
         btnAlterar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAlterarActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAlterar);
+        btnAlterar.setBounds(25, 271, 100, 30);
 
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -99,59 +140,33 @@ public class AlterarCliente extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblClientes);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(440, 25, 568, 457);
+
         txtID.setEnabled(false);
+        getContentPane().add(txtID);
+        txtID.setBounds(25, 213, 48, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("ID");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(25, 192, 14, 17);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnAlterar)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel1)
-                        .addComponent(txtNome)
-                        .addComponent(txtCpf)
-                        .addComponent(txtTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE))
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
-                        .addGap(4, 4, 4)
-                        .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(btnAlterar)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+        btnBuscarNome.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/icons8-pesquisar-20.png"))); // NOI18N
+        btnBuscarNome.setText("Buscar");
+        btnBuscarNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarNomeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBuscarNome);
+        btnBuscarNome.setBounds(10, 400, 100, 30);
+        getContentPane().add(txtBuscarNome);
+        txtBuscarNome.setBounds(120, 400, 300, 30);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundo_home.jpg"))); // NOI18N
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(0, 0, 1020, 490);
 
         setSize(new java.awt.Dimension(1034, 532));
         setLocationRelativeTo(null);
@@ -188,6 +203,12 @@ public class AlterarCliente extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tblClientesMouseClicked
 
+    private void btnBuscarNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarNomeActionPerformed
+        // TODO add your handling code here:
+        BuscarPorNome(txtBuscarNome.getText().toUpperCase());
+        txtBuscarNome.setText("");
+    }//GEN-LAST:event_btnBuscarNomeActionPerformed
+
     
     public static void main(String args[]) {
         
@@ -223,12 +244,15 @@ public class AlterarCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnBuscarNome;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblClientes;
+    private javax.swing.JTextField txtBuscarNome;
     private javax.swing.JTextField txtCpf;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNome;

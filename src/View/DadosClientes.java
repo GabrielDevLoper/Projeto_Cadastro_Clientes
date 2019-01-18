@@ -21,8 +21,6 @@ public class DadosClientes extends javax.swing.JFrame {
     }
     
     
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,7 +98,6 @@ public class DadosClientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
         Cliente c = new Cliente();
         ClienteDAO cdao = new ClienteDAO();
          //Condição feita para caso os campos de textos sejam esquecidos de ser inserido.

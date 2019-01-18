@@ -117,6 +117,7 @@ public class AlterarCliente extends javax.swing.JFrame {
         getContentPane().add(btnAlterar);
         btnAlterar.setBounds(25, 271, 100, 30);
 
+        tblClientes.setBackground(new java.awt.Color(153, 153, 153));
         tblClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

@@ -116,6 +116,7 @@ public class DadosClientes extends javax.swing.JFrame {
             c.setCpf(txtCpf.getText().toUpperCase());
             c.setTelefone(txtTelefone.getText().toUpperCase());
             cdao.Salvar(c);
+            LimparTextos();
         }
         
         

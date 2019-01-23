@@ -22,7 +22,7 @@ public class ClienteDAO {
             stmt.setString(3, cliente.getTelefone());
             stmt.executeUpdate();
             
-            //JOptionPane.showMessageDialog(null, "Dados inseridos com Sucesso!");
+            JOptionPane.showMessageDialog(null, "Dados inseridos com Sucesso!");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error ao inserir Dados!");
         }finally{
